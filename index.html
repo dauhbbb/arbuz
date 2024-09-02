@@ -32,6 +32,19 @@
 </head>
 <body>
     <h1>Arbuz</h1> <!-- Название сайта -->
-    <video src="your-video.mp4" autoplay muted playsinline controls></video>
+    <video id="videoElement" src="your-video.mp4" controls></video>
+
+    <script>
+        window.addEventListener('load', function() {
+            var video = document.getElementById('videoElement');
+            video.play().then(() => {
+                // Автоматическое воспроизведение удалось
+            }).catch(error => {
+                // Автоматическое воспроизведение заблокировано
+                video.muted = true; // Отключаем звук
+                video.play(); // Повторно пытаемся воспроизвести видео
+            });
+        });
+    </script>
 </body>
 </html>
